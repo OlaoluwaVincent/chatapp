@@ -1,10 +1,14 @@
 import React from 'react';
-import ChatBox from './components/ChatBox';
+import { Login } from './components';
 
 type Props = {};
 
 const App = (props: Props) => {
-	return <div className='App'></div>;
+	return (
+		<div className='App'>
+			<Login />
+		</div>
+	);
 };
 
 export default App;

@@ -3,7 +3,6 @@
 .h1 {
 	font-size: 40px;
 	line-height: 48px;
-	color: $red;
 }
 .h3 {
 	font-size: 26px;
@@ -58,6 +57,12 @@
 	.xs {
 		font-size: 13px;
 		line-height: 15px;
+	}
+
+	.login {
+		&__container {
+			width: 50%;
+		}
 	}
 }
 // DESKTOP

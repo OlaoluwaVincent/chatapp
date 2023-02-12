@@ -1,0 +1,56 @@
+@import '../mixins';
+@import './variables';
+
+.login {
+	height: 100vh;
+	@include flexSpace(row, center);
+
+	&__container {
+		background: $iceblue;
+		padding: 50px 20px;
+		width: 80%;
+		border-radius: 10px;
+
+		h1 {
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			text-align: center;
+			font-family: $poppins;
+			font-weight: $bold;
+		}
+	}
+
+	&__input {
+		display: block;
+		width: 100%;
+		margin-top: 20px;
+		height: 30px;
+		outline: transparent;
+		border: none;
+		padding-left: 10px;
+		font-weight: $medium;
+
+		&:focus {
+			border: 1px solid $gray;
+		}
+
+		&::placeholder {
+			color: $gray;
+		}
+	}
+
+	button {
+		display: block;
+		margin: 20px auto 0;
+		padding: 8px 0;
+		width: 100%;
+		font-weight: $medium;
+		background: $light-green;
+		border: none;
+      cursor: pointer;
+
+		&:hover {
+			background: $dark-green;
+		}
+	}
+}
