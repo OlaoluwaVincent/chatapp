@@ -3,8 +3,16 @@
 @import './mixins';
 @import './partials//chatbox';
 @import './partials/login';
+@import './partials/register';
 @import './partials/mediaQueries';
 body {
 	background: $light-gray;
 	color: $black;
+}
+
+.error {
+	color: $red;
+}
+.success {
+	color: $dark-green;
 }

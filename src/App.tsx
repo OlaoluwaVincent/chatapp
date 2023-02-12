@@ -1,12 +1,12 @@
 import React from 'react';
-import { Login } from './components';
+import { Register } from './components';
 
 type Props = {};
 
 const App = (props: Props) => {
 	return (
 		<div className='App'>
-			<Login />
+			<Register />
 		</div>
 	);
 };

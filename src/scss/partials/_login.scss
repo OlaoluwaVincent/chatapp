@@ -1,5 +1,4 @@
 @import '../mixins';
-@import './variables';
 
 .login {
 	height: 100vh;
@@ -23,7 +22,7 @@
 	&__input {
 		display: block;
 		width: 100%;
-		margin-top: 20px;
+		margin-bottom: 20px;
 		height: 30px;
 		outline: transparent;
 		border: none;
@@ -47,7 +46,7 @@
 		font-weight: $medium;
 		background: $light-green;
 		border: none;
-      cursor: pointer;
+		cursor: pointer;
 
 		&:hover {
 			background: $dark-green;
