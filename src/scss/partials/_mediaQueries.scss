@@ -14,23 +14,27 @@
 	line-height: 28px;
 }
 .body-text {
-	font-size: 16px;
+	font-size: 14px;
 	line-height: 22px;
 }
 .small {
-	font-size: 14px;
+	font-size: 12px;
 	line-height: 18px;
 }
+.xs {
+	font-size: 11px;
+	line-height: 14px;
+}
 @media (min-width: 425px) {
-	body {
-		background: $red;
-	}
+	// body {
+	// 	background: $red;
+	// }
 }
 // TABLET
 @media (min-width: 768px) {
-	body {
-		background-color: $iceblue;
-	}
+	// body {
+	// 	background-color: $iceblue;
+	// }
 	.h1 {
 		font-size: 47px;
 		line-height: 54px;
@@ -44,19 +48,23 @@
 		line-height: 34px;
 	}
 	.body-text {
-		font-size: 20px;
-		line-height: 28px;
+		font-size: 16px;
+		line-height: 26px;
 	}
 	.small {
-		font-size: 16px;
+		font-size: 14px;
 		line-height: 20px;
+	}
+	.xs {
+		font-size: 13px;
+		line-height: 15px;
 	}
 }
 // DESKTOP
 @media (min-width: 1024px) {
-	body {
-		background-color: $gray;
-	}
+	// body {
+	// 	background-color: $gray;
+	// }
 	.h1 {
 		font-size: 57px;
 		line-height: 64px;
@@ -70,11 +78,15 @@
 		line-height: 40px;
 	}
 	.body-text {
-		font-size: 24px;
+		font-size: 20px;
 		line-height: 32px;
 	}
 	.small {
-		font-size: 22px;
-		line-height: 28;
+		font-size: 17px;
+		line-height: 24px;
+	}
+	.xs {
+		font-size: 14px;
+		line-height: 16px;
 	}
 }

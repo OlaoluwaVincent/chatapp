@@ -1,3 +1,9 @@
-@use './partials/reset';
-@use './partials/variables' as v;
-@use './partials/mediaQueries';
+@import './partials/reset';
+@import './partials/variables';
+@import './mixins';
+@import './partials/mediaQueries';
+@import './partials//chatbox';
+
+body {
+	background: $light-gray;
+}
