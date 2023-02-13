@@ -46,7 +46,7 @@ const Login = ({ setHaveAccount }: Props) => {
 				<p className='small'>
 					Click to
 					<span
-						className='secondary white'
+						className='secondary black'
 						onClick={() => setHaveAccount(false)}
 					>
 						Register
