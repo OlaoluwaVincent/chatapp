@@ -94,4 +94,14 @@
 		font-size: 14px;
 		line-height: 16px;
 	}
+
+	.login {
+		&__container {
+			width: 30%;
+		}
+
+		&__input {
+			padding: 15px 10px;
+		}
+	}
 }
