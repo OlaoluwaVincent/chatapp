@@ -10,11 +10,11 @@
 		margin-bottom: 5px;
 		font-weight: $medium;
 	}
-	.small > span {
-		margin-left: 5px;
-	}
-
 	.login__container button {
 		margin-bottom: 7px;
+	}
+	.small > span {
+		margin-left: 5px;
+		cursor: pointer;
 	}
 }

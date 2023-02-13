@@ -88,7 +88,7 @@ const Register = ({ setHaveAccount }: Props) => {
 				<p className='small'>
 					Already have an account{' '}
 					<span
-						className='white fw--medium'
+						className='black fw--medium'
 						onClick={() => setHaveAccount(true)}
 					>
 						Login

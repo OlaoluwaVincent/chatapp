@@ -46,11 +46,11 @@ const Login = ({ setHaveAccount }: Props) => {
 				<p className='small'>
 					Click to
 					<span
-						className='secondary white'
+						className='black'
 						onClick={() => setHaveAccount(false)}
 					>
 						Register
-					</span>
+					</span>{' '}
 				</p>
 			</div>
 		</div>
