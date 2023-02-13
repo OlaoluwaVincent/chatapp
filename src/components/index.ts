@@ -11,3 +11,5 @@ export { default as MessageBox } from './MessageBox';
 export { default as MessageInput } from './MessageInput';
 export { default as Search } from './Search';
 export { default as Accounts } from './Accounts';
+export { default as PrivateRoute } from './PrivateRoute';
+export { default as Loading } from './Loading';
