@@ -10,7 +10,7 @@ const Index = (props: Props) => {
 				<Route path='/' element={<MessageContainer />} />
 			</Route>
 			<Route path='/login' element={<Login />} />
-			<Route path='/login' element={<Register />} />
+			<Route path='/register' element={<Register />} />
 		</Routes>
 	);
 };

@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { InputProps } from '../typing';
 import { RegisterUser } from '../firebase/firebaseUtils';
+import { useNavigate } from 'react-router-dom';
 
-interface Props {
-	setHaveAccount: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const Register = ({ setHaveAccount }: Props) => {
+const Register = () => {
+	const navigate = useNavigate();
 	//
 	const [loginData, setLoginData] = useState<InputProps>({
 		email: '',
@@ -22,7 +20,8 @@ const Register = ({ setHaveAccount }: Props) => {
 		setLoginData({ ...loginData, ...newInput });
 	};
 
-	const handleRegister = () => {
+	const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
 		if (loginData.password.length < 6) {
 			setError('Paswword should be atleast 6 characters');
 			return;
@@ -36,12 +35,15 @@ const Register = ({ setHaveAccount }: Props) => {
 
 		// Register to Firebase
 
-		RegisterUser(loginData);
+		const userCredential = await RegisterUser(loginData);
+		if (userCredential) {
+			navigate('/');
+		}
 	};
 
 	return (
 		<div className='login'>
-			<div className='login__container'>
+			<form className='login__container' onSubmit={handleRegister}>
 				<h1 className='h3'>Register</h1>
 				<div className='login__inputs'>
 					<label htmlFor='username'>Username</label>
@@ -83,23 +85,19 @@ const Register = ({ setHaveAccount }: Props) => {
 					</p>
 				</div>
 				{error && <p className='error small fw--light'>{error}</p>}
-				<button
-					type='submit'
-					className='body-text'
-					onClick={handleRegister}
-				>
+				<button type='submit' className='body-text'>
 					Register
 				</button>
 				<p className='small'>
 					Already have an account{' '}
 					<span
 						className='black fw--medium'
-						onClick={() => setHaveAccount(true)}
+						onClick={() => navigate('/login')}
 					>
 						Login
 					</span>{' '}
 				</p>
-			</div>
+			</form>
 		</div>
 	);
 };

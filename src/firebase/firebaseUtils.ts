@@ -15,7 +15,11 @@ import { InputProps, LoginProps } from '../typing';
 const auth = getAuth();
 
 export const RegisterUser = (loginData: InputProps) => {
-	createUserWithEmailAndPassword(auth, loginData.email, loginData.password)
+	const userDetails = createUserWithEmailAndPassword(
+		auth,
+		loginData.email,
+		loginData.password
+	)
 		.then((userCredential) => {
 			// Signed in
 			const user = userCredential.user;
@@ -41,6 +45,7 @@ export const RegisterUser = (loginData: InputProps) => {
 
 				.catch((error) => console.log(error));
 			// ...
+			return user;
 		})
 		.catch((error) => {
 			const errorMessage = error.message;
@@ -48,6 +53,7 @@ export const RegisterUser = (loginData: InputProps) => {
 			let errorType = parts[parts.length - 1].slice(0, -2);
 			toast.warn(errorType);
 		});
+	return userDetails;
 };
 
 export const SignUp = (data: LoginProps) => {

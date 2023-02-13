@@ -7,7 +7,7 @@ interface Props {
 	setHaveAccount: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Login = ({ setHaveAccount }: Props) => {
+const Login = () => {
 	const navigate = useNavigate();
 	const [loginData, setLoginData] = useState<LoginProps>({
 		email: '',
@@ -19,7 +19,8 @@ const Login = ({ setHaveAccount }: Props) => {
 		setLoginData({ ...loginData, ...newInput });
 	};
 
-	const handleLogin = async () => {
+	const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
 		const data = await SignUp(loginData);
 		if (data) {
 			navigate('/');
@@ -28,7 +29,7 @@ const Login = ({ setHaveAccount }: Props) => {
 
 	return (
 		<div className='login'>
-			<div className='login__container'>
+			<form className='login__container' onSubmit={handleLogin}>
 				<h1 className='h3'>Login</h1>
 				<div className='login__inputs'>
 					<input
@@ -48,23 +49,19 @@ const Login = ({ setHaveAccount }: Props) => {
 						onChange={handleInput}
 					/>
 				</div>
-				<button
-					type='submit'
-					className='body-text'
-					onClick={handleLogin}
-				>
+				<button type='submit' className='body-text'>
 					Login
 				</button>
 				<p className='small'>
 					Click to
 					<span
 						className='black'
-						onClick={() => setHaveAccount(false)}
+						onClick={() => navigate('/register')}
 					>
 						Register
 					</span>{' '}
 				</p>
-			</div>
+			</form>
 		</div>
 	);
 };
