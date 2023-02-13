@@ -16,3 +16,29 @@ body {
 .success {
 	color: $dark-green;
 }
+.primary {
+	color: $blue;
+}
+
+.secndary {
+	color: $gray;
+}
+.white {
+	color: $light-gray;
+}
+
+.fw--thin {
+	font-weight: $thin;
+}
+.fw--light {
+	font-weight: $light;
+}
+.fw--medium {
+	font-weight: $medium;
+}
+.fw--bold {
+	font-weight: $bold;
+}
+.fw--heavy {
+	font-weight: $heavy;
+}

@@ -1,13 +1,17 @@
 import { useState } from 'react';
 
-type Props = {
+type InputProps = {
 	username: string;
 	email: string;
 	password: string;
 	confirmPassword?: string;
 };
 
-const Register = () => {
+interface Props {
+	setHaveAccount: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Register = ({ setHaveAccount }: Props) => {
 	const [loginData, setLoginData] = useState({});
 	const [visible, setVisible] = useState(false);
 	const [error, setError] = useState('');
@@ -17,9 +21,9 @@ const Register = () => {
 		setLoginData({ ...loginData, ...newInput });
 	};
 
-	const handleLogin = () => {
+	const handleRegister = () => {
 		const { username, email, password, confirmPassword } =
-			loginData as Props;
+			loginData as InputProps;
 
 		if (password !== confirmPassword) {
 			setError('Passwords do not match');
@@ -64,20 +68,32 @@ const Register = () => {
 						className='login__input body-text'
 						onChange={handleInput}
 					/>
-					<input
-						type='checkbox'
-						checked={visible}
-						onChange={() => setVisible(!visible)}
-					/>
+					<p className=''>
+						<input
+							type='checkbox'
+							checked={visible}
+							onChange={() => setVisible(!visible)}
+						/>
+						Show Password
+					</p>
 				</div>
 				{error && <p className='error small'>{error}</p>}
 				<button
 					type='submit'
 					className='body-text'
-					onClick={handleLogin}
+					onClick={handleRegister}
 				>
-					Login
+					Register
 				</button>
+				<p className='small'>
+					Already have an account{' '}
+					<span
+						className='white fw--medium'
+						onClick={() => setHaveAccount(true)}
+					>
+						Login
+					</span>{' '}
+				</p>
 			</div>
 		</div>
 	);

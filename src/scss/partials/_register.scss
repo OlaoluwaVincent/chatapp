@@ -1,11 +1,20 @@
 // Most of the styles are already defined in './login.scss' //
 
-.h3 {
-	margin-bottom: 20px;
-}
+.login {
+	.h3 {
+		margin-bottom: 20px;
+	}
 
-label {
-	display: block;
-	margin-bottom: 5px;
-	font-weight: $medium;
+	label {
+		display: block;
+		margin-bottom: 5px;
+		font-weight: $medium;
+	}
+	.small > span {
+		margin-left: 5px;
+	}
+
+	.login__container button {
+		margin-bottom: 7px;
+	}
 }

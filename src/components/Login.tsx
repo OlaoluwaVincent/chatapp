@@ -1,8 +1,10 @@
 import { useState } from 'react';
 
-type Props = {};
+interface Props {
+	setHaveAccount: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const Login = () => {
+const Login = ({ setHaveAccount }: Props) => {
 	const [loginData, setLoginData] = useState({});
 
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,6 +43,15 @@ const Login = () => {
 				>
 					Login
 				</button>
+				<p className='small'>
+					Click to
+					<span
+						className='secondary white'
+						onClick={() => setHaveAccount(false)}
+					>
+						Register
+					</span>
+				</p>
 			</div>
 		</div>
 	);

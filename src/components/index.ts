@@ -10,3 +10,4 @@ export { default as MessageList } from './MessageList';
 export { default as MessageBox } from './MessageBox';
 export { default as MessageInput } from './MessageInput';
 export { default as Search } from './Search';
+export { default as Accounts } from './Accounts';
