@@ -2,6 +2,7 @@ import {
 	getAuth,
 	createUserWithEmailAndPassword,
 	updateProfile,
+	signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { serverTimestamp } from 'firebase/firestore';
 import { setDoc, doc } from 'firebase/firestore';
@@ -9,10 +10,11 @@ import { db } from './firebaseconfig';
 
 import { toast } from 'react-toastify';
 
-import { InputProps } from '../typing';
+import { InputProps, LoginProps } from '../typing';
+
+const auth = getAuth();
 
 export const RegisterUser = (loginData: InputProps) => {
-	const auth = getAuth();
 	createUserWithEmailAndPassword(auth, loginData.email, loginData.password)
 		.then((userCredential) => {
 			// Signed in
@@ -46,4 +48,19 @@ export const RegisterUser = (loginData: InputProps) => {
 			let errorType = parts[parts.length - 1].slice(0, -2);
 			toast.warn(errorType);
 		});
+};
+
+export const SignUp = (data: LoginProps) => {
+	const currentUser = signInWithEmailAndPassword(
+		auth,
+		data.email,
+		data.password
+	)
+		.then((userCredential) => {
+			return userCredential.user;
+		})
+		.catch((error) => {
+			toast.warn('Incorrect email or password');
+		});
+	return currentUser;
 };

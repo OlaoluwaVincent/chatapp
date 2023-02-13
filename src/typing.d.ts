@@ -5,3 +5,8 @@ export interface InputProps {
 	confirmPassword: string;
 	timeStamp?: any;
 }
+
+export interface LoginProps {
+	email: string;
+	password: string;
+}
