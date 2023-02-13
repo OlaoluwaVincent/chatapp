@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Register, Login } from '../components';
 
-type Props = {};
+// type Props = {};
 
-const Accounts = (props: Props) => {
+const Accounts = () => {
 	const [haveAccount, setHaveAccount] = useState(true);
 	return (
-		<div className='accounts'>
+		<div>
 			{haveAccount ? (
 				<Login setHaveAccount={setHaveAccount} />
 			) : (

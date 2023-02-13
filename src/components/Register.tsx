@@ -1,18 +1,19 @@
 import { useState } from 'react';
-
-type InputProps = {
-	username: string;
-	email: string;
-	password: string;
-	confirmPassword?: string;
-};
+import { InputProps } from '../typing';
+import { RegisterUser } from '../firebase/firebaseUtils';
 
 interface Props {
 	setHaveAccount: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Register = ({ setHaveAccount }: Props) => {
-	const [loginData, setLoginData] = useState({});
+	//
+	const [loginData, setLoginData] = useState<InputProps>({
+		email: '',
+		password: '',
+		confirmPassword: '',
+		username: '',
+	});
 	const [visible, setVisible] = useState(false);
 	const [error, setError] = useState('');
 
@@ -22,16 +23,20 @@ const Register = ({ setHaveAccount }: Props) => {
 	};
 
 	const handleRegister = () => {
-		const { username, email, password, confirmPassword } =
-			loginData as InputProps;
+		if (loginData.password.length < 6) {
+			setError('Paswword should be atleast 6 characters');
+			return;
+		}
 
-		if (password !== confirmPassword) {
+		// Validate that passwords match
+		if (loginData.password !== loginData.confirmPassword) {
 			setError('Passwords do not match');
 			return;
-		} else {
-			setError('');
 		}
+
 		// Register to Firebase
+
+		RegisterUser(loginData);
 	};
 
 	return (
@@ -77,7 +82,7 @@ const Register = ({ setHaveAccount }: Props) => {
 						Show Password
 					</p>
 				</div>
-				{error && <p className='error small'>{error}</p>}
+				{error && <p className='error small fw--light'>{error}</p>}
 				<button
 					type='submit'
 					className='body-text'
