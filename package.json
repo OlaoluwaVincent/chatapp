@@ -14,6 +14,8 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@types/long": "^5.0.0",
+		"firebase": "^9.17.1",
 		"node-sass": "^8.0.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
