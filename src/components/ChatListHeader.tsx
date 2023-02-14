@@ -10,7 +10,7 @@ type Props = {
 const ChatListHeader = ({ searchValue, setSearchValue }: Props) => {
 	return (
 		<div className='chatlistheader'>
-			<MdMenu className='svg__menu' size={30} />
+			<MdMenu size={30} />
 			<Search searchValue={searchValue} setSearchValue={setSearchValue} />
 		</div>
 	);

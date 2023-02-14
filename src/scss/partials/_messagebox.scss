@@ -1,0 +1,40 @@
+.message {
+	background: #fff;
+	max-width: 80%;
+	width: max-content;
+	padding: 10px 20px;
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		font-family: $poppins;
+		word-wrap: break-word;
+		font-weight: $light;
+	}
+
+	&__time {
+		align-self: flex-end;
+		font-weight: $light;
+		display: flex;
+		align-items: center;
+		gap: 5px;
+	}
+}
+
+.incoming {
+	background: $light-green;
+	border-radius: 0 20px 20px 20px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.outgoing {
+	background: $light-green;
+	border-radius: 20px 0 20px 20px;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+.small {
+	line-height: 0 !important;
+}

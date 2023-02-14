@@ -22,7 +22,6 @@
 	font-size: 11px;
 	line-height: 14px;
 }
-
 @media (min-width: 425px) {
 	// body {
 	// 	background: $red;
@@ -61,6 +60,15 @@
 	.login {
 		&__container {
 			width: 50%;
+		}
+	}
+
+	.maincontainer {
+		.messagecontainer {
+			grid-column: 5/-1;
+		}
+		.chatcontainer {
+			grid-column: 1/5;
 		}
 	}
 }
