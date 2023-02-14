@@ -1,9 +1,19 @@
 import React from 'react';
+import Search from './Search';
+import { MdMenu } from 'react-icons/md';
 
-type Props = {};
+type Props = {
+	searchValue: string;
+	setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+};
 
-const ChatListHeader = (props: Props) => {
-	return <div>ChatListHeader</div>;
+const ChatListHeader = ({ searchValue, setSearchValue }: Props) => {
+	return (
+		<div className='chatlistheader'>
+			<MdMenu className='svg__menu' size={30} />
+			<Search searchValue={searchValue} setSearchValue={setSearchValue} />
+		</div>
+	);
 };
 
 export default ChatListHeader;

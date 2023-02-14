@@ -1,25 +1,13 @@
 .search {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 30px;
-	padding: 5px 30px;
-	background: #fff;
+	position: relative;
+	width: 100%;
 
-	.svg__menu {
+	.svg__search {
+		position: absolute;
+		top: 50%;
+		left: 5px;
+		translate: 0 -50%;
 		color: $gray;
-	}
-
-	form {
-		position: relative;
-		flex: 1;
-		.svg__search {
-			position: absolute;
-			top: 50%;
-			left: 5px;
-			translate: 0 -50%;
-			color: $gray;
-		}
 	}
 
 	&__input {

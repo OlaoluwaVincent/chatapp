@@ -1,0 +1,7 @@
+.chatlistheader {
+	@include flexSpace(row, space-between);
+	gap: 30px;
+	background: #fff;
+	padding: 10px;
+	border-bottom: 1px solid $gray;
+}

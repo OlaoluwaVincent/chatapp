@@ -1,13 +1,13 @@
-import React from 'react';
+import { memo } from 'react';
 
 type Props = {
 	userChatId: number;
-	handleChatClick: () => void;
 };
 
-const ChatBox = (props: Props) => {
+const ChatBox = memo(function ChatBox({ userChatId }: Props) {
+	const handleChatClick = () => {};
 	return (
-		<div className='chatbox'>
+		<div className='chatbox' onClick={handleChatClick}>
 			<div className='chatbox__profile-image'>
 				{/* <img src="" alt="" /> */}
 			</div>
@@ -19,6 +19,6 @@ const ChatBox = (props: Props) => {
 			</div>
 		</div>
 	);
-};
+});
 
 export default ChatBox;
