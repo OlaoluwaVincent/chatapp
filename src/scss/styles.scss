@@ -1,9 +1,10 @@
 @import './partials/reset';
 @import './partials/variables';
 @import './mixins';
-@import './partials//chatbox';
+@import './partials/chatbox';
 @import './partials/login';
 @import './partials/register';
+@import './partials/search';
 @import './partials/mediaQueries';
 body {
 	background: $light-gray;
