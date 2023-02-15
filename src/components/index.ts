@@ -1,5 +1,6 @@
-export { default as Register } from './Register';
-export { default as Login } from './Login';
+export { default as AddUser } from '../pages/AddUser';
+export { default as Register } from '../pages/Register';
+export { default as Login } from '../pages/Login';
 export { default as ChatContainer } from './ChatContainer';
 export { default as ChatListHeader } from './ChatListHeader';
 export { default as ChatBox } from './ChatBox';
@@ -10,6 +11,5 @@ export { default as MessageBox } from './MessageBox';
 export { default as MessageInput } from './MessageInput';
 export { default as Search } from './Search';
 export { default as Accounts } from './Accounts';
-export { default as PrivateRoute } from './PrivateRoute';
-export { default as MainContainer } from './MainContainer';
+export { default as MainContainer } from '../pages/MainContainer';
 export { default as Loading } from './Loading';

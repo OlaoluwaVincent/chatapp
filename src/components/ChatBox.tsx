@@ -1,10 +1,20 @@
 import { memo } from 'react';
 
 type Props = {
-	userChatId: number;
+	chat: any;
 };
 
-const ChatBox = memo(function ChatBox({ userChatId }: Props) {
+const ChatBox = memo(function ChatBox({ chat }: Props) {
+	const date = new Date(
+		chat[1].date.seconds * 1000 + chat[1].date.nanoseconds / 1000000
+	);
+	const timeString = date.toLocaleTimeString('en-US', {
+		hour: 'numeric',
+		minute: 'numeric',
+		hour12: true,
+	});
+
+	// console.log(timeString);
 	const handleChatClick = () => {};
 	return (
 		<div className='chatbox-container'>
@@ -14,7 +24,8 @@ const ChatBox = memo(function ChatBox({ userChatId }: Props) {
 				</div>
 				<div className='chatbox__profile-name'>
 					<h3 className='body-text'>
-						UserName <span className='small'>time</span>
+						{chat[1].userInfo.displayName}
+						<span className='small'>{timeString}</span>
 					</h3>
 					<p className='small'>recent chat</p>
 				</div>

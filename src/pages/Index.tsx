@@ -1,15 +1,34 @@
-import { Routes, Route } from 'react-router-dom';
-import { Login, MainContainer, Register } from '../components';
-import { PrivateRoute } from '../components';
+import { useContext } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { Login, MainContainer, Register, AddUser } from '../components';
+import { AuthContext } from '../context/AuthContext';
 type Props = {};
 
 const Index = (props: Props) => {
+	const { currentUser } = useContext(AuthContext);
+
+	const ProtectedRoutes = ({ children }: React.PropsWithChildren<{}>) => {
+		if (!currentUser) {
+			return <Navigate to='/login' />;
+		}
+		return <>{children}</>;
+	};
+
 	return (
 		<Routes>
-			<Route path='/' element={<PrivateRoute />}>
-				<Route path='/' element={<MainContainer />} />
-			</Route>
+			<Route
+				path='/'
+				element={
+					<ProtectedRoutes>
+						<MainContainer />
+					</ProtectedRoutes>
+				}
+			/>
+
+			<Route path='/add-users' element={<AddUser />} />
+
 			<Route path='/login' element={<Login />} />
+
 			<Route path='/register' element={<Register />} />
 		</Routes>
 	);

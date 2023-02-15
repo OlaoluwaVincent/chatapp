@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import { MdSearch, MdCancel } from 'react-icons/md';
 import Search from './Search';
+import { getAuth, signOut } from 'firebase/auth';
 
 type Props = {};
 
 const MessageHeader = (props: Props) => {
 	const [visible, setVisible] = useState(false);
 	const [searchValue, setSearchValue] = useState('');
+
+	const auth = getAuth();
+
 	const handleCancel = () => {
 		setVisible(false);
 		setSearchValue('');
@@ -39,6 +43,7 @@ const MessageHeader = (props: Props) => {
 					<MdCancel className='close' onClick={handleCancel} />
 				</div>
 			)}
+			<p onClick={() => signOut(auth)}>SignOut</p>
 		</div>
 	);
 };

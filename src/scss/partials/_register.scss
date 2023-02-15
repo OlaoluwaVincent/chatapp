@@ -11,11 +11,15 @@
 		font-weight: $medium;
 	}
 	.login__container button {
-		margin-bottom: 7px;
+		margin-bottom: 20px;
 	}
 	.small > span {
 		margin-left: 2px;
 		font-weight: $bold;
 		cursor: pointer;
+	}
+
+	.error {
+		margin: 20px auto;
 	}
 }

@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { InputProps } from '../typing';
 import { RegisterUser } from '../firebase/firebaseUtils';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 const Register = () => {
 	const navigate = useNavigate();
-	//
+	const { currentUser } = useContext(AuthContext);
+
 	const [loginData, setLoginData] = useState<InputProps>({
 		email: '',
 		password: '',
@@ -41,6 +43,7 @@ const Register = () => {
 		}
 	};
 
+	if (currentUser) navigate('/');
 	return (
 		<div className='login'>
 			<form className='login__container' onSubmit={handleRegister}>

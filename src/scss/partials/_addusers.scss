@@ -1,0 +1,20 @@
+.add-users {
+	height: 100vh;
+	max-height: 100vh;
+	@include flexSpace(column, center);
+	gap: 20px;
+	background: $iceblue;
+	input {
+		padding: 10px;
+		background: #fff;
+		color: $blue;
+		border: 1px solid $black;
+		outline-color: $light-green;
+		width: 250px;
+	}
+	p {
+		cursor: pointer;
+		text-decoration: underline;
+		text-align: center;
+	}
+}
