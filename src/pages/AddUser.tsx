@@ -11,7 +11,6 @@ import {
 } from 'firebase/firestore';
 import { db } from '../firebase/firebaseconfig';
 import { AuthContext } from '../context/AuthContext';
-import { Loading } from '../components';
 import { toast } from 'react-toastify';
 
 type Props = {};
@@ -29,6 +28,11 @@ const AddUser = (props: Props) => {
 			const d = await AddUsers(searchUser);
 			setUsers(d);
 		}
+	};
+
+	const handleSubmit = async () => {
+		const val = await AddUsers(searchUser);
+		setUsers(val);
 	};
 
 	const addToUserChat = async (user: DocumentData) => {
@@ -75,6 +79,7 @@ const AddUser = (props: Props) => {
 
 	return (
 		<div className='add-users'>
+			<h1 className='h3'>Search Users</h1>
 			<input
 				type='email'
 				value={searchUser}
@@ -82,10 +87,19 @@ const AddUser = (props: Props) => {
 				onKeyDown={handlePress}
 				onChange={(e) => setSearchUser(e.target.value)}
 			/>
-			{users && (
+			<button type='button' onClick={handleSubmit}>
+				Search
+			</button>
+			{users && users?.length > 0 && (
 				<i className='small fw--light'>Click to add user to chat</i>
 			)}
+
+			{users && users?.length == 0 && (
+				<i className='small fw--light'>User not found</i>
+			)}
+
 			{users &&
+				users?.length > 0 &&
 				users.map((d) => (
 					<p
 						key={d.email}
