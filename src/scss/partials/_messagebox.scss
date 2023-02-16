@@ -1,40 +1,54 @@
-.message {
-	background: #fff;
-	max-width: 80%;
-	width: max-content;
-	padding: 10px 20px;
-
-	&__text {
-		display: flex;
-		flex-direction: column;
-		font-family: $poppins;
-		word-wrap: break-word;
-		font-weight: $light;
-	}
-
-	&__time {
-		align-self: flex-end;
-		font-weight: $light;
-		display: flex;
-		align-items: center;
-		gap: 5px;
-	}
-}
-
-.incoming {
-	background: $light-green;
-	border-radius: 0 20px 20px 20px;
-	margin-left: 10px;
-	margin-top: 10px;
-}
-
-.outgoing {
-	background: $light-green;
-	border-radius: 20px 0 20px 20px;
-	margin-right: 10px;
-	margin-top: 10px;
-}
-
 .small {
 	line-height: 0 !important;
+}
+
+.messageBox__holder {
+	display: flex;
+	flex-direction: column;
+	height: calc(
+		100vh - 100px
+	); /* Set a fixed height that is the full height of the viewport minus the height of the input area */
+	overflow-y: scroll; /* Set the overflow property to scroll */
+	scroll-behavior: smooth; /* Add smooth scrolling behavior */
+
+	.message {
+		background: #fff;
+		max-width: 80%;
+		width: max-content;
+		padding: 10px 20px;
+
+		&__text {
+			display: flex;
+			flex-direction: column;
+			font-family: $poppins;
+			word-wrap: break-word;
+			font-weight: $light;
+		}
+
+		&__time {
+			align-self: flex-end;
+			font-weight: $thin;
+			display: flex;
+			align-items: center;
+			gap: 2px;
+			line-height: 0 !important;
+		}
+	}
+
+	.incoming {
+		background: $blue;
+		border-radius: 0 20px 20px 20px;
+		margin-left: 10px;
+		margin-top: 10px;
+		color: #fff;
+	}
+
+	.outgoing {
+		background: $iceblue;
+		color: white;
+		border-radius: 20px 0 20px 20px;
+		margin-right: 10px;
+		margin-top: 10px;
+		align-self: flex-end;
+	}
 }

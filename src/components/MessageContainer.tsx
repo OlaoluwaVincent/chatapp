@@ -1,19 +1,24 @@
-import { getAuth } from 'firebase/auth';
+import { useContext, useEffect } from 'react';
 import MessageBox from './MessageBox';
 import MessageHeader from './MessageHeader';
 import MessageInput from './MessageInput';
+import { ChatContext } from '../context/ChatContext';
 
 type Props = {};
 
 const MessageContainer = (props: Props) => {
-	return (
-		<div className='messagecontainer'>
-			<MessageHeader />
+	const { data } = useContext(ChatContext);
 
+	return (
+		<div
+			className={`messagecontainer ${
+				data.user.displayName ? 'display' : 'display--none'
+			}`}
+		>
+			<MessageHeader />
+			{/* <div className='messageBox__holder'> */}
 			<MessageBox />
-			<MessageBox />
-			<MessageBox />
-			<MessageBox />
+			{/* </div> */}
 
 			<div className='messagecontainer__input'>
 				<MessageInput />

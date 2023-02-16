@@ -22,6 +22,15 @@
 	font-size: 11px;
 	line-height: 14px;
 }
+
+.display--none {
+	display: none;
+}
+
+.display {
+	display: flex;
+}
+
 @media (min-width: 425px) {
 	// body {
 	// 	background: $red;
@@ -61,6 +70,10 @@
 		&__container {
 			width: 50%;
 		}
+	}
+
+	.display--none {
+		display: flex;
 	}
 
 	.maincontainer {

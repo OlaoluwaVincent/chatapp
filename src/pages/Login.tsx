@@ -1,18 +1,27 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { SignIn } from '../firebase/firebaseUtils';
 import { LoginProps } from '../typing';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+// import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
 	const navigate = useNavigate();
 	//
-	const { currentUser } = useContext(AuthContext);
+	// const { currentUser } = useContext(AuthContext);
 	const [loginData, setLoginData] = useState<LoginProps>({
 		email: '',
 		password: '',
 	});
-
+	// useEffect(() => {
+	// 	if (currentUser) {
+	// 		const sub = () => {
+	// 			if (currentUser) navigate('/');
+	// 		};
+	// 		return () => {
+	// 			sub();
+	// 		};
+	// 	}
+	// }, [currentUser]);
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		let newInput = { [e.target.name]: e.target.value };
 		setLoginData({ ...loginData, ...newInput });
@@ -25,8 +34,6 @@ const Login = () => {
 			navigate('/');
 		}
 	};
-
-	if (currentUser) navigate('/');
 
 	return (
 		<div className='login'>

@@ -17,11 +17,11 @@
 	position: relative;
 
 	&__input {
-		position: sticky;
+		position: absolute;
 		bottom: 0;
+		right: 0;
 		width: 100%;
 		margin-top: 20px;
-		/* additional styles for the input container */
 	}
 }
 

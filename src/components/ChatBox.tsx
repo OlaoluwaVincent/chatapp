@@ -1,21 +1,29 @@
-import { memo } from 'react';
+import { memo, useContext, useState, useEffect } from 'react';
+import { ChatContext } from '../context/ChatContext';
 
-type Props = {
-	chat: any;
-};
+const ChatBox = memo(function ChatBox({ chat }: any) {
+	const [time, setTime] = useState('');
+	const { dispatch } = useContext(ChatContext);
 
-const ChatBox = memo(function ChatBox({ chat }: Props) {
-	const date = new Date(
-		chat[1].date.seconds * 1000 + chat[1].date.nanoseconds / 1000000
-	);
-	const timeString = date.toLocaleTimeString('en-US', {
-		hour: 'numeric',
-		minute: 'numeric',
-		hour12: true,
-	});
+	useEffect(() => {
+		if (chat?.date?.seconds && chat?.date?.nanoseconds) {
+			const date = new Date(
+				chat.date.seconds * 1000 + chat.date.nanoseconds / 1000000
+			);
+			const timeString = date.toLocaleTimeString('en-US', {
+				hour: 'numeric',
+				minute: 'numeric',
+				hour12: true,
+			});
+			setTime(timeString);
+		}
+		return () => {};
+	}, [chat?.date?.nanoseconds, chat?.date?.seconds]);
 
-	// console.log(timeString);
-	const handleChatClick = () => {};
+	console.log(chat.lastMessage);
+	const handleChatClick = () => {
+		dispatch({ type: 'CHANGE_USER', payload: chat.userInfo });
+	};
 	return (
 		<div className='chatbox-container'>
 			<div className='chatbox' onClick={handleChatClick}>
@@ -24,10 +32,12 @@ const ChatBox = memo(function ChatBox({ chat }: Props) {
 				</div>
 				<div className='chatbox__profile-name'>
 					<h3 className='body-text'>
-						{chat[1].userInfo.displayName}
-						<span className='small'>{timeString}</span>
+						{chat.userInfo.displayName}
+						{time && <span className='small'>{time}</span>}
 					</h3>
-					<p className='small'>recent chat</p>
+					{chat.lastMessage && (
+						<p className='small'>{chat.lastMessage.text}</p>
+					)}
 				</div>
 			</div>
 		</div>

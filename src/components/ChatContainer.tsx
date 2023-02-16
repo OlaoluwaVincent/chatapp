@@ -4,6 +4,7 @@ import { onSnapshot, doc, DocumentData } from 'firebase/firestore';
 import { db } from '../firebase/firebaseconfig';
 import { AuthContext } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
+import { ChatContext } from '../context/ChatContext';
 
 type Props = {};
 
@@ -12,6 +13,7 @@ const ChatContainer = (props: Props) => {
 	const [chats, setChats] = useState<DocumentData | undefined>([]);
 
 	const { currentUser } = useContext(AuthContext);
+	const { data } = useContext(ChatContext);
 
 	useEffect(() => {
 		if (currentUser?.uid) {
@@ -28,10 +30,12 @@ const ChatContainer = (props: Props) => {
 		}
 	}, [currentUser]);
 
-	if (chats) console.log(Object.entries(chats));
-
 	return (
-		<div className='chatcontainer'>
+		<div
+			className={`chatcontainer ${
+				data.user.displayName ? 'display--none' : 'display'
+			}`}
+		>
 			<ChatListHeader
 				searchValue={searchValue}
 				setSearchValue={setSearchValue}
@@ -41,9 +45,9 @@ const ChatContainer = (props: Props) => {
 			</Link>
 
 			{chats &&
-				Object.entries(chats).map((chat) => (
-					<ChatBox key={chat[0]} chat={chat} />
-				))}
+				Object.entries(chats)
+					?.sort((a, b) => b[1].date - a[1].date)
+					.map((chat) => <ChatBox key={chat[0]} chat={chat[1]} />)}
 		</div>
 	);
 };

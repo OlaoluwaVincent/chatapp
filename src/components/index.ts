@@ -6,7 +6,6 @@ export { default as ChatListHeader } from './ChatListHeader';
 export { default as ChatBox } from './ChatBox';
 export { default as MessageContainer } from './MessageContainer';
 export { default as MessageHeader } from './MessageHeader';
-export { default as MessageList } from './MessageList';
 export { default as MessageBox } from './MessageBox';
 export { default as MessageInput } from './MessageInput';
 export { default as Search } from './Search';

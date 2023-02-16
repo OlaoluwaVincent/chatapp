@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import { MdSearch, MdCancel } from 'react-icons/md';
+import { useState, useContext } from 'react';
+import { MdSearch, MdCancel, MdArrowBack } from 'react-icons/md';
 import Search from './Search';
-import { getAuth, signOut } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
+import { ChatContext } from '../context/ChatContext';
 
 type Props = {};
 
@@ -10,19 +11,30 @@ const MessageHeader = (props: Props) => {
 	const [searchValue, setSearchValue] = useState('');
 
 	const auth = getAuth();
+	/**	Data is coming from our chatcontext
+	 * which contains the details of the
+	 * user we want to chat with*/
+	const { dispatch, data } = useContext(ChatContext);
 
 	const handleCancel = () => {
 		setVisible(false);
 		setSearchValue('');
 	};
 
+	const handleClick = () => {
+		dispatch({
+			type: 'CHANGE_USER',
+			payload: { uid: '', displayName: '', photoURL: '', email: '' },
+		});
+	};
+
 	return (
 		<div className='message-header'>
+			<MdArrowBack size={25} onClick={handleClick} />
 			<img className='message-header__profile-image' src='' alt='name' />
 			{!visible && (
 				<div className='message-header__profile-name'>
-					<h3 className='body-text'>UserName</h3>
-					<p className='small'>recent chat</p>
+					<h3 className='body-text'>{data.user.displayName}</h3>
 				</div>
 			)}
 
@@ -43,7 +55,6 @@ const MessageHeader = (props: Props) => {
 					<MdCancel className='close' onClick={handleCancel} />
 				</div>
 			)}
-			<p onClick={() => signOut(auth)}>SignOut</p>
 		</div>
 	);
 };
