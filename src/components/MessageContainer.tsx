@@ -16,9 +16,7 @@ const MessageContainer = (props: Props) => {
 			}`}
 		>
 			<MessageHeader />
-			{/* <div className='messageBox__holder'> */}
 			<MessageBox />
-			{/* </div> */}
 
 			<div className='messagecontainer__input'>
 				<MessageInput />

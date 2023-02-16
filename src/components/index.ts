@@ -9,6 +9,5 @@ export { default as MessageHeader } from './MessageHeader';
 export { default as MessageBox } from './MessageBox';
 export { default as MessageInput } from './MessageInput';
 export { default as Search } from './Search';
-export { default as Accounts } from './Accounts';
 export { default as MainContainer } from '../pages/MainContainer';
 export { default as Loading } from './Loading';
