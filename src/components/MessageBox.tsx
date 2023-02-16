@@ -63,7 +63,7 @@ const MessageBox = () => {
 				>
 					{message.img && (
 						<div className='message__img'>
-						<img src={message.img} alt={message.senderId} />
+							<img src={message.img} alt={message.senderId} />
 						</div>
 					)}
 					<p className='message__text body-text'>
@@ -84,11 +84,7 @@ const MessageBox = () => {
 					</p>
 				</div>
 			))}
-			<div
-				ref={messagesRef}
-				style={{ background: 'red', height: '5px', color: 'white' }}
-			/>
-			dfad
+			<div ref={messagesRef} />
 		</div>
 	);
 };
