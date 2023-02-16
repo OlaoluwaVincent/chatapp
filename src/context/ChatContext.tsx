@@ -6,7 +6,7 @@ interface ChatContext {
 	dispatch: React.Dispatch<ChatAction>;
 }
 
-interface ChatState {
+export interface ChatState {
 	chatId: string;
 	user: {
 		uid: string;

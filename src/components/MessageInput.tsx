@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { MdSend, MdAttachFile } from 'react-icons/md';
 import { AuthContext } from '../context/AuthContext';
-import { ChatContext } from '../context/ChatContext';
+import { ChatContext, ChatState } from '../context/ChatContext';
 import {
 	updateDoc,
 	doc,
@@ -12,6 +12,7 @@ import {
 } from 'firebase/firestore';
 import { db, storage } from '../firebase/firebaseconfig';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { User } from 'firebase/auth';
 
 // type Props = {
 // 	file: File | undefined;
@@ -74,7 +75,9 @@ const MessageInput = () => {
 					);
 				}
 			);
+			UpdateLastMessage('file(img)', data, currentUser);
 			setFile(undefined);
+			setText('');
 		} else {
 			let lastMessage = text;
 			await updateDoc(doc(db, 'chats', data.chatId), {
@@ -86,23 +89,10 @@ const MessageInput = () => {
 				}),
 			});
 			setText('');
-			if (currentUser) {
-				await updateDoc(doc(db, 'userChat', currentUser.uid), {
-					[data.chatId + '.lastMessage']: {
-						text: lastMessage,
-					},
-					[data.chatId + '.date']: serverTimestamp(),
-				});
-				await updateDoc(doc(db, 'userChat', data.user.uid), {
-					[data.chatId + '.lastMessage']: {
-						text: lastMessage,
-					},
-					[data.chatId + '.date']: serverTimestamp(),
-				});
-			}
+
+			UpdateLastMessage(text, data, currentUser);
 		}
 	};
-
 	return (
 		<form className='message-input' onSubmit={handleSubmit}>
 			<div>
@@ -135,3 +125,24 @@ const MessageInput = () => {
 };
 
 export default MessageInput;
+
+const UpdateLastMessage = async (
+	lastMessage: string,
+	data: ChatState,
+	currentUser: User | null
+) => {
+	if (currentUser) {
+		await updateDoc(doc(db, 'userChat', currentUser.uid), {
+			[data.chatId + '.lastMessage']: {
+				text: lastMessage,
+			},
+			[data.chatId + '.date']: serverTimestamp(),
+		});
+		await updateDoc(doc(db, 'userChat', data.user.uid), {
+			[data.chatId + '.lastMessage']: {
+				text: lastMessage,
+			},
+			[data.chatId + '.date']: serverTimestamp(),
+		});
+	}
+};
