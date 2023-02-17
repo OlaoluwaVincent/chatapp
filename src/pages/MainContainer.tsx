@@ -1,9 +1,6 @@
-import React from 'react';
 import { ChatContainer, MessageContainer } from '../components';
-import { getAuth } from 'firebase/auth';
-type Props = {};
 
-const MainContainer = (props: Props) => {
+const MainContainer = () => {
 	return (
 		<div className='maincontainer'>
 			<ChatContainer />

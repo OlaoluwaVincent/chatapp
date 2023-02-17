@@ -33,8 +33,7 @@ const MessageInput = () => {
 			setFile(undefined);
 		}
 	};
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
+	const handleSubmit = async () => {
 		if (file) {
 			const storageRef = ref(storage, uuid);
 			const uploadTask = uploadBytesResumable(storageRef, file);
@@ -80,21 +79,21 @@ const MessageInput = () => {
 			setText('');
 		} else {
 			let lastMessage = text;
+			setText('');
 			await updateDoc(doc(db, 'chats', data.chatId), {
 				messages: arrayUnion({
 					id: uuid,
-					text,
+					text: lastMessage,
 					senderId: currentUser?.uid,
 					date: Timestamp.now(),
 				}),
 			});
-			setText('');
 
 			UpdateLastMessage(text, data, currentUser);
 		}
 	};
 	return (
-		<form className='message-input' onSubmit={handleSubmit}>
+		<div className='message-input'>
 			<div>
 				<label htmlFor='file'>
 					<MdAttachFile
@@ -117,10 +116,10 @@ const MessageInput = () => {
 				onChange={(e) => setText(e.target.value)}
 			/>
 
-			<button type='submit'>
+			<button type='submit' onClick={handleSubmit}>
 				<MdSend color='#707991' size={30} className='input__svg' />
 			</button>
-		</form>
+		</div>
 	);
 };
 

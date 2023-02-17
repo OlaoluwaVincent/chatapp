@@ -84,6 +84,12 @@
 			grid-column: 1/5;
 		}
 	}
+
+	.add-users {
+		.all__users {
+			width: 80%;
+		}
+	}
 }
 // DESKTOP
 @media (min-width: 1024px) {

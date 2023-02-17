@@ -1,19 +1,15 @@
 import { useState, useContext } from 'react';
-import { MdSearch, MdCancel, MdArrowBack } from 'react-icons/md';
-import Search from './Search';
-import { getAuth } from 'firebase/auth';
+
 import { ChatContext } from '../context/ChatContext';
 
-type Props = {};
+import { MdSearch, MdCancel, MdArrowBack } from 'react-icons/md';
 
-const MessageHeader = (props: Props) => {
+import Search from './Search';
+
+const MessageHeader = () => {
 	const [visible, setVisible] = useState(false);
 	const [searchValue, setSearchValue] = useState('');
 
-	const auth = getAuth();
-	/**	Data is coming from our chatcontext
-	 * which contains the details of the
-	 * user we want to chat with*/
 	const { dispatch, data } = useContext(ChatContext);
 
 	const handleCancel = () => {
@@ -38,7 +34,7 @@ const MessageHeader = (props: Props) => {
 				</div>
 			)}
 
-			{!visible && (
+			{/* {!visible && (
 				<MdSearch
 					className='svg__search'
 					size={25}
@@ -54,7 +50,7 @@ const MessageHeader = (props: Props) => {
 					/>
 					<MdCancel className='close' onClick={handleCancel} />
 				</div>
-			)}
+			)} */}
 		</div>
 	);
 };

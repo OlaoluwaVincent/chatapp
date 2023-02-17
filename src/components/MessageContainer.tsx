@@ -1,12 +1,10 @@
-import { useContext, useEffect } from 'react';
-import MessageBox from './MessageBox';
-import MessageHeader from './MessageHeader';
-import MessageInput from './MessageInput';
-import { ChatContext } from '../context/ChatContext';
+import { useContext } from 'react';
 
-type Props = {};
+import { MessageBox, MessageHeader, MessageInput } from './index';
 
-const MessageContainer = (props: Props) => {
+import { ChatContext, ChatState } from '../context/ChatContext';
+
+const MessageContainer = () => {
 	const { data } = useContext(ChatContext);
 
 	return (

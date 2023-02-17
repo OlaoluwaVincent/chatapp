@@ -6,12 +6,6 @@
 	height: 100vh;
 	max-height: 100vh;
 	width: 100%;
-	overflow-y: scroll;
-	overflow-x: hidden;
-	background-image: url(../../../bg-image.jpg);
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
 	display: flex;
 	flex-direction: column;
 	position: relative;
@@ -21,7 +15,7 @@
 		bottom: 0;
 		right: 0;
 		width: 100%;
-		margin-top: 20px;
+		height: 10vh;
 	}
 }
 
@@ -34,6 +28,7 @@
 	background: #fff;
 	padding: 10px 16px;
 	width: 100%;
+	height: inherit;
 
 	.input__svg {
 		cursor: pointer;
@@ -48,6 +43,8 @@
 		border-radius: 20px;
 		background: $light-gray;
 		width: 80%;
+		word-wrap: break-word;
+		word-break: break-all;
 	}
 
 	button {

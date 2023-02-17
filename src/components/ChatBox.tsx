@@ -1,7 +1,25 @@
 import { memo, useContext, useState, useEffect } from 'react';
-import { ChatContext } from '../context/ChatContext';
+import { ChatContext, ChatState } from '../context/ChatContext';
 
-const ChatBox = memo(function ChatBox({ chat }: any) {
+interface Props {
+	chat: {
+		date: {
+			nanoseconds: number;
+			seconds: number;
+		};
+		userInfo: {
+			displayName: string;
+			email: string;
+			uid: string;
+			photoUrl: string;
+		};
+		lastMessage: {
+			text: string;
+		};
+	};
+}
+
+const ChatBox = memo(function ChatBox({ chat }: Props) {
 	const [time, setTime] = useState('');
 	const { dispatch } = useContext(ChatContext);
 
@@ -20,7 +38,6 @@ const ChatBox = memo(function ChatBox({ chat }: any) {
 		return () => {};
 	}, [chat?.date?.nanoseconds, chat?.date?.seconds]);
 
-	console.log(chat.lastMessage);
 	const handleChatClick = () => {
 		dispatch({ type: 'CHANGE_USER', payload: chat.userInfo });
 	};
@@ -31,10 +48,12 @@ const ChatBox = memo(function ChatBox({ chat }: any) {
 					{/* <img src="" alt="" /> */}
 				</div>
 				<div className='chatbox__profile-name'>
-					<h3 className='body-text'>
-						{chat.userInfo.displayName}
+					<div className='name__time'>
+						<h3 className='body-text'>
+							{chat.userInfo.displayName}
+						</h3>
 						{time && <span className='small'>{time}</span>}
-					</h3>
+					</div>
 					{chat.lastMessage && (
 						<p className='small'>{chat.lastMessage.text}</p>
 					)}

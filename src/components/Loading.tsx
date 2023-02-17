@@ -1,17 +1,24 @@
 import { Vortex } from 'react-loader-spinner';
-
-const Loading = () => {
+interface Props {
+	height?: string;
+	width?: string;
+}
+const Loading = ({ height, width }: Props) => {
 	return (
 		<Vortex
 			visible={true}
-			height='80'
-			width='80'
+			height={height ? height : '500'}
+			width={width ? width : '500'}
 			ariaLabel='vortex-loading'
-			wrapperStyle={{
-				backgroundColor: '#277cf2;',
-				height: '100vh',
-				width: '100vw',
-			}}
+			wrapperStyle={
+				!height && !width
+					? {
+							backgroundColor: 'inherit',
+							maxheight: '100vh',
+							maxwidth: '100vw',
+					  }
+					: undefined
+			}
 			wrapperClass='vortex-wrapper'
 			colors={[
 				'#8babd8',
@@ -19,7 +26,7 @@ const Loading = () => {
 				'#f71735',
 				'#707991',
 				'#011627',
-				'#1a9cff',
+				'#ffffff',
 			]}
 		/>
 	);

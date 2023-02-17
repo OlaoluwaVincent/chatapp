@@ -1,10 +1,11 @@
-import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { AddUsers } from '../firebase/firebaseUtils';
+import { useState, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
 	DocumentData,
+	collection,
 	doc,
 	getDoc,
+	getDocs,
 	serverTimestamp,
 	setDoc,
 	updateDoc,
@@ -12,31 +13,34 @@ import {
 import { db } from '../firebase/firebaseconfig';
 import { AuthContext } from '../context/AuthContext';
 import { toast } from 'react-toastify';
+import { User } from 'firebase/auth';
+import { Loading } from '../components';
 
 type Props = {};
 
 const AddUser = (props: Props) => {
-	const navigate = useNavigate();
-
-	const [searchUser, setSearchUser] = useState('');
+	const [allUsers, setAllUsers] = useState<DocumentData>([]);
 	const [loading, setLoading] = useState(false);
-	const [users, setUsers] = useState<DocumentData[]>();
 	const { currentUser } = useContext(AuthContext);
 
-	const handlePress = async (e: React.KeyboardEvent<HTMLInputElement>) => {
-		if (e.code === 'Enter') {
-			const d = await AddUsers(searchUser);
-			setUsers(d);
-		}
-	};
+	useEffect(() => {
+		const GetAllUsers = async () => {
+			const querySnapshot = await getDocs(collection(db, 'users'));
+			if (!querySnapshot.empty) {
+				const data = querySnapshot.docs;
 
-	const handleSubmit = async () => {
-		const val = await AddUsers(searchUser);
-		setUsers(val);
-	};
+				const res = data.map((doc) => doc.data());
+				setAllUsers(res);
+			}
+		};
+		return () => {
+			GetAllUsers();
+		};
+	}, []);
 
 	const addToUserChat = async (user: DocumentData) => {
 		// check if the conversation exists
+		setLoading(true);
 		let combinedId;
 		if (currentUser?.uid) {
 			combinedId =
@@ -68,8 +72,11 @@ const AddUser = (props: Props) => {
 						},
 						[combinedId + '.date']: serverTimestamp(),
 					});
+					setLoading(false);
 					toast.success('Friend Added');
-					navigate('/');
+				} else {
+					toast.info('Already your friend');
+					setLoading(false);
 				}
 			} catch (error: any) {
 				console.log(error);
@@ -79,38 +86,31 @@ const AddUser = (props: Props) => {
 
 	return (
 		<div className='add-users'>
-			<h1 className='h3'>Search Users</h1>
-			<input
-				type='email'
-				value={searchUser}
-				className='body-text'
-				onKeyDown={handlePress}
-				onChange={(e) => setSearchUser(e.target.value)}
-			/>
-			<button type='button' onClick={handleSubmit}>
-				Search
-			</button>
-			{users && users?.length > 0 && (
-				<i className='small fw--light'>Click to add user to chat</i>
-			)}
-
-			{users && users?.length == 0 && (
-				<i className='small fw--light'>User not found</i>
-			)}
-
-			{users &&
-				users?.length > 0 &&
-				users.map((d) => (
-					<p
-						key={d.email}
-						onClick={() => addToUserChat(d)}
-						className='body-text fw--light'
-					>
-						{d.email}
-						<br />
-						{d.displayName}
-					</p>
-				))}
+			<Link to='/'>Chat</Link>
+			<h1 className='h3'>Add Users</h1>
+			<div className='all__users'>
+				{allUsers &&
+					allUsers?.length > 0 &&
+					allUsers.map((user: User) => (
+						<div className='users' key={user.uid}>
+							<div className='user'>
+								<p className='body-text'>{user.displayName}</p>
+								<p className='small'>{user.email}</p>
+							</div>
+							<button
+								type='button'
+								onClick={() => addToUserChat(user)}
+							>
+								{loading ? (
+									<Loading height='25' width='25' />
+								) : (
+									'Add User'
+								)}
+							</button>
+						</div>
+					))}
+			</div>
+			{allUsers.length < 1 && <Loading />}
 		</div>
 	);
 };

@@ -43,7 +43,7 @@ const Register = () => {
 		}
 	};
 
-	if (currentUser) navigate('/');
+	if (currentUser?.displayName) navigate('/');
 	return (
 		<div className='login'>
 			<form className='login__container' onSubmit={handleRegister}>

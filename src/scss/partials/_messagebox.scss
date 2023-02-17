@@ -5,15 +5,22 @@
 .messageBox__holder {
 	display: flex;
 	flex-direction: column;
-	height: calc(
-		100vh - 100px
-	); /* Set a fixed height that is the full height of the viewport minus the height of the input area */
-	overflow-y: scroll; /* Set the overflow property to scroll */
-	scroll-behavior: smooth; /* Add smooth scrolling behavior */
+	height: calc(100vh - 20vh);
+	overflow-y: auto;
+	background: linear-gradient(
+			to right,
+			rgba(0, 0, 0, 0.2),
+			rgba(255, 255, 255, 0.4)
+		),
+		url(../../../bg-image.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding-bottom: 7px;
 
 	.message {
 		background: #fff;
-		max-width: 80%;
+		max-width: 60%;
 		width: max-content;
 		padding: 10px 20px;
 
@@ -37,14 +44,15 @@
 		&__img {
 			height: 200px;
 			width: 100%;
-			margin: 5px;
 			img {
 				display: block;
-				object-fit: cover;
+				// object-fit: contain;
 				object-position: top left;
 				max-width: 100%;
 				max-height: 100%;
-				// border-radius: 20px;
+				width: 100%;
+				height: 100%;
+				border-radius: 10px;
 			}
 		}
 	}

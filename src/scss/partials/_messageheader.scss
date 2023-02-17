@@ -9,7 +9,8 @@
 	gap: 20px;
 	background: #fff;
 	margin: 0;
-	height: 60px;
+	height: 10vh;
+	border-left: 1px solid $light-gray;
 
 	&__profile-image {
 		width: 50px;

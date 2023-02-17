@@ -2,9 +2,8 @@ import { useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Login, MainContainer, Register, AddUser } from '../components';
 import { AuthContext } from '../context/AuthContext';
-type Props = {};
 
-const Index = (props: Props) => {
+const Index = () => {
 	const { currentUser } = useContext(AuthContext);
 
 	const ProtectedRoutes = ({ children }: React.PropsWithChildren<{}>) => {

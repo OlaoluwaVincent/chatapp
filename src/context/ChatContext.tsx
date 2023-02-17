@@ -21,7 +21,7 @@ interface ChangeUserAction {
 	payload: {
 		uid: string;
 		displayName: string;
-		photoURL: string;
+		photoURL?: string;
 		email: string;
 	};
 }
