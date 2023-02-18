@@ -14,8 +14,8 @@ const Loading = ({ height, width }: Props) => {
 				!height && !width
 					? {
 							backgroundColor: 'inherit',
-							maxheight: '100vh',
-							maxwidth: '100vw',
+							height: '100vh',
+							width: '100vw',
 					  }
 					: undefined
 			}

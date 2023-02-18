@@ -33,6 +33,7 @@ const AddUser = (props: Props) => {
 				setAllUsers(res);
 			}
 		};
+		GetAllUsers();
 		return () => {
 			GetAllUsers();
 		};
